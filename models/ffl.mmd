@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 0 0 1254 673 </Bounds>
+<Bounds> 0 0 1003 649 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -16,16 +16,16 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=2
+STOPTIME=20
 DT = 0.02
 
 d/dt (RNA1) = RNA2 * FbTF1 * FbTF2
 
 d/dt (RNA2) =  k1 - k2 * RNA2
 
-d/dt (TF1) = 1
+d/dt (TF1) = k3 * RNA1 - k4 * TF1
 
-d/dt (TF2) = 1
+d/dt (TF2) = k3 * RNA2 - k4 * TF2
 
 FbTF1 = (TF1/kd1) / (1 + (TF1/kd1))
 
@@ -33,7 +33,7 @@ FbTF1 = (TF1/kd1) / (1 + (TF1/kd1))
 
 FbTF2 = (TF2/kd2) / (1 + (TF2/kd2))
 
-init TF1 = 0
+init TF1 = 10
 init TF2 = 0
 init RNA1 = 0
 init RNA2 = 0
@@ -41,6 +41,8 @@ kd1 = 1
 kd2 = 1
 k1 = 10
 k2 = .1
+k3 = 10
+k4 = .1
 </jeditorpane>
 </jmadonna.EquationPanel>
 
