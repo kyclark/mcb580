@@ -1,0 +1,133 @@
+<Document>
+<Version> 22 </Version>
+<JMadonnaVersion> 9.0.123 </JMadonnaVersion>
+<Bounds> 0 0 1280 751 </Bounds>
+<NotesEditor>
+<jeditorpane>
+<size>13</size><family>Lucida Grande</family>
+
+</jeditorpane>
+</NotesEditor>
+<jmadonna.EquationPanel>
+<DocPanel>
+</DocPanel>
+<jeditorpane>
+<size>16</size><family>Serif</family>METHOD RK4
+
+STARTTIME = 0
+STOPTIME=2
+DT = 0.02
+
+init RNA1 = 0
+init RNA2 = 0
+init TF1 = 0
+init TF2 = 0
+kd1 = 1
+kd2 = 1
+
+d/dt(RNA1) = P1 * P2
+
+P1 = (TF1/kd1) / (1 + (TF1/kd1))
+
+P2 = (TF2/kd2) / (1 + (TF2/kd2))
+
+</jeditorpane>
+</jmadonna.EquationPanel>
+
+<imethod> rk4 </imethod>
+<jmadonna.ParameterPanel>
+<DocPanel>
+</DocPanel>
+<ParamSets>
+</ParamSets>
+</jmadonna.ParameterPanel>
+<jmadonna.MultiPanel>
+<DocPanel>
+</DocPanel>
+<DividerPercent> 1.0 </DividerPercent>
+<Orientation> -1 </Orientation>
+<idx> 0 </idx>
+<TabSplitter>
+<SelectedIndex> 0 </SelectedIndex>
+<graph.COutputFrame>
+<DocPanel>
+<Name>
+Graph 1
+</Name>
+</DocPanel>
+
+<SingleView>
+<graph.COutputView>
+<Name> Graph </Name>
+<GraphToolBar>
+<Grid> 1 </Grid>
+</GraphToolBar>
+<Plot>
+<LineWidth> 1 </LineWidth>
+</Plot>
+<OV_XVAR>
+<VI_SYMBOL> TIME </VI_SYMBOL>
+</OV_XVAR>
+<OV_YVARS>
+<OV_YVAR_I>
+<VI_SYMBOL> R </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> TF2 </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> true </VI_Y2AXIS>
+</OV_YVAR_I>
+</OV_YVARS>
+<OV_TABLE> false </OV_TABLE>
+<OV_FFT> false </OV_FFT>
+<OV_COLORS> true </OV_COLORS>
+<OV_STYLES> false </OV_STYLES>
+<OV_OSCMODE> false </OV_OSCMODE>
+<OV_LINES> true </OV_LINES>
+<OV_POINTS> false </OV_POINTS>
+<OV_GRID> true </OV_GRID>
+<OV_DBTN> true </OV_DBTN>
+<OV_LEGEND> false </OV_LEGEND>
+<OV_PARAMS> false </OV_PARAMS>
+<OV_READOUT> false </OV_READOUT>
+<OV_INITCOND> false </OV_INITCOND>
+<OV_RDOUTFXFY> 0.0 0.0 </OV_RDOUTFXFY>
+<OV_ZSNORMAL>
+</OV_ZSNORMAL>
+<OV_ZSFFT>
+<ZS_SIZE> 1 </ZS_SIZE>
+<ZS_I>
+<ZS_XLOG> true </ZS_XLOG>
+<ZS_Y1LOG> false </ZS_Y1LOG>
+<ZS_Y2LOG> false </ZS_Y2LOG>
+</ZS_I>
+</OV_ZSFFT>
+<OV_ZSOSCMODE>
+</OV_ZSOSCMODE>
+<OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
+<OV_X1LABELS>    TIME  </OV_X1LABELS>
+<OV_Y1LABELS>    R  </OV_Y1LABELS>
+<OV_Y2LABELS>      </OV_Y2LABELS>
+<OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
+<OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
+</graph.COutputView>
+</SingleView>
+</graph.COutputFrame>
+</TabSplitter>
+<idx> 1 </idx>
+<TabSplitter>
+<SelectedIndex> -1 </SelectedIndex>
+</TabSplitter>
+</jmadonna.MultiPanel>
+
+<ChemicalReactionDialog>
+<ShowRates> true </ShowRates>
+<ShowConsts> true </ShowConsts>
+<ShowInits> true </ShowInits>
+<ShowDiffs> true </ShowDiffs>
+</ChemicalReactionDialog>
+</Document>
