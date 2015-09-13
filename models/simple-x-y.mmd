@@ -1,11 +1,10 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 30 24 1003 649 </Bounds>
+<Bounds> 0 0 842 543 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
-
 
 </jeditorpane>
 </NotesEditor>
@@ -16,34 +15,23 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=20
+STOPTIME=100
 DT = 0.02
 
-d/dt (R1) = kd3 * fb1 * fb2
+init RY = 0
+init RZ = 0
+bY = 1
+bZ = 1
+aY = .1
+aZ = .1
+kY = 10
 
-d/dt (R2) =  k1 - k2 * R2
+RY' = bY - (RY * aY)
 
-d/dt (TF1) = k3 * R1 - k4 * TF1
+FbY = (RY/kY) / (1 + (RY/kY))
 
-d/dt (TF2) = k3 * R2 - k4 * TF2
+RZ' = FbY * bZ - (RZ * aZ)
 
-fb1 = (TF1/kd1) / (1 + (TF1/kd1))
-
-{ or P1 could be 0 or 1, on or off }
-
-fb2 = (TF2/kd2) / (1 + (TF2/kd2))
-
-init TF1 = 10
-init TF2 = 0
-init R1 = 0
-init R2 = 0
-kd1 = 1
-kd2 = 1
-kd3 = 1
-k1 = 10
-k2 = .1
-k3 = 10
-k4 = .1
 </jeditorpane>
 </jmadonna.EquationPanel>
 
@@ -79,26 +67,16 @@ Graph 1
 <LineWidth> 1 </LineWidth>
 </Plot>
 <OV_XVAR>
-<VI_SYMBOL> null </VI_SYMBOL>
+<VI_SYMBOL> TIME </VI_SYMBOL>
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
-<VI_SYMBOL> RNA1 </VI_SYMBOL>
+<VI_SYMBOL> RY </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
 <OV_YVAR_I>
-<VI_SYMBOL> RNA2 </VI_SYMBOL>
-<VI_SHOW> true </VI_SHOW>
-<VI_Y2AXIS> true </VI_Y2AXIS>
-</OV_YVAR_I>
-<OV_YVAR_I>
-<VI_SYMBOL> TF1 </VI_SYMBOL>
-<VI_SHOW> true </VI_SHOW>
-<VI_Y2AXIS> false </VI_Y2AXIS>
-</OV_YVAR_I>
-<OV_YVAR_I>
-<VI_SYMBOL> TF2 </VI_SYMBOL>
+<VI_SYMBOL> RZ </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> true </VI_Y2AXIS>
 </OV_YVAR_I>
@@ -132,9 +110,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>      TIME   </OV_X1LABELS>
-<OV_Y1LABELS>      R   </OV_Y1LABELS>
-<OV_Y2LABELS>         </OV_Y2LABELS>
+<OV_X1LABELS>    TIME  </OV_X1LABELS>
+<OV_Y1LABELS>    RY  </OV_Y1LABELS>
+<OV_Y2LABELS>    RZ  </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
