@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 0 8 1267 674 </Bounds>
+<Bounds> 13 0 1267 674 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -45,7 +45,7 @@ kY =75
 FbX = (RX^H/kX^H) / (1 + (RX^H/kX^H)) 
 FbY = (RY^H/kY^H) / (1 + (RY^H/kY^H))
 
-RX' = IF TIME <lt> 30 THEN (bX - RX * aX) ELSE (0 - RX * aX)
+RX' = IF TIME <lt> 5 THEN 0 ELSE IF TIME <lt> 30 THEN (bX - RX * aX) ELSE (0 - RX * aX)
 
 ; rate of mRNA(Y) tied to bound X
 RY' = FbX * bY - (RY * aY)

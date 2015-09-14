@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 0 0 1280 751 </Bounds>
+<Bounds> 15 0 1265 628 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -17,13 +17,16 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=100
+STOPTIME=60
 DT = 0.02
 
 ; initial values
 init RX = 0
 init RY = 0
 init RZ = 0
+
+; Hill coefficient
+H=2
 
 ; production rate
 bX = 10
@@ -39,18 +42,18 @@ aZ = .1
 kX = 50
 kY = 50
 
-; fraction bound
-FbX = (RX/kX) / (1 + (RX/kX)) 
+; fraction un/bound
+FbX = (RX^H/kX^H) / (1 + (RX^H/kX^H)) 
+FuX = 1/(1+ RX/kX)
+FuY = 1/(1 + RY/kY)
 
-FbY = (RY/kY) / (1 + (RY/kY))
-
-RX' = IF TIME <lt> 30 THEN (bX - RX * aX) ELSE (0 - RX * aX)
+RX' = IF TIME <lt> 5 THEN 0 ELSE IF TIME <lt> 30 THEN (bX - RX * aX) ELSE (0 - RX * aX)
 
 ; rate of mRNA(Y) tied to bound X
 RY' = FbX * bY - (RY * aY)
  
 ; rate of mRNA(Z) tied to bound X & Y
-RZ' = (FbX + FbY)/2 * bZ - (RZ * aZ)
+RZ' = (1 - (FuX * FuY)) * bZ - (RZ * aZ)
 
 
 
