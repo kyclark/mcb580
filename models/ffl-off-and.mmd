@@ -1,10 +1,11 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 0 0 1280 751 </Bounds>
+<Bounds> 20 0 1150 648 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
 
 </jeditorpane>
 </NotesEditor>
@@ -19,19 +20,19 @@ STOPTIME=30
 DT = 0.02
 
 ; initial values
-init RX = 70
-init RY = 60
-init RZ = 40
+init RX = 50
+init RY = 50
+init RZ = 50
 
 ; production rate
-bX = 10
+bX = 0
 bY = 10
 bZ = 10
 
 ; degradation rate
-aX = 1.1
-aY = 1.1
-aZ = 1.1
+aX = .1
+aY = .1
+aZ = .1
 
 ; expression thresholds (?)
 kX = 50
@@ -42,13 +43,14 @@ FbX = (RX/kX) / (1 + (RX/kX))
 
 FbY = (RY/kY) / (1 + (RY/kY))
 
-RX' = RX - (RX * aX)
+RX' = bX - (RX * aX)
  
 ; rate of mRNA(Y) tied to bound X
 RY' = FbX * bY - (RY * aY)
  
 ; rate of mRNA(Z) tied to bound X & Y
 RZ' = FbX * FbY * bZ - (RZ * aZ)
+
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -133,9 +135,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>    TIME  </OV_X1LABELS>
-<OV_Y1LABELS>    RX, RZ  </OV_Y1LABELS>
-<OV_Y2LABELS>    RY  </OV_Y2LABELS>
+<OV_X1LABELS>      TIME   </OV_X1LABELS>
+<OV_Y1LABELS>      RX, RZ   </OV_Y1LABELS>
+<OV_Y2LABELS>      RY   </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

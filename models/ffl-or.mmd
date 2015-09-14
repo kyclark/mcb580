@@ -1,10 +1,11 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 105 0 1017 691 </Bounds>
+<Bounds> 0 51 900 548 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
 
 </jeditorpane>
 </NotesEditor>
@@ -15,7 +16,7 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=500
+STOPTIME=50
 DT = 0.02
 
 ; initial values
@@ -42,14 +43,14 @@ FbX = (RX/kX) / (1 + (RX/kX))
 
 FbY = (RY/kY) / (1 + (RY/kY))
 
-; rate of mRNA(X) is simplest
-RX' = bX - (RX * aX)
+RX' = IF TIME <lt> 30 THEN (bX - RX * aX) ELSE (0 - RX * aX)
 
 ; rate of mRNA(Y) tied to bound X
 RY' = FbX * bY - (RY * aY)
  
 ; rate of mRNA(Z) tied to bound X & Y
-RZ' = FbX * FbY * bZ - (RZ * aZ)
+RZ' = (FbX + FbY)/2 * bZ - (RZ * aZ)
+
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -134,9 +135,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>    TIME  </OV_X1LABELS>
-<OV_Y1LABELS>    RX, RZ  </OV_Y1LABELS>
-<OV_Y2LABELS>    RY  </OV_Y2LABELS>
+<OV_X1LABELS>      TIME   </OV_X1LABELS>
+<OV_Y1LABELS>      RX, RZ   </OV_Y1LABELS>
+<OV_Y2LABELS>      RY   </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
