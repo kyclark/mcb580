@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 141 0 1139 685 </Bounds>
+<Bounds> 113 27 1139 685 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -17,29 +17,36 @@ STARTTIME = 0
 STOPTIME=50
 DT = 0.02
 
-init RX = 0
-init RY = 0
-init RZ = 0
+; initial values
+init RX = 70
+init RY = 60
+init RZ = 40
 
+; production rate
 bX = 10
 bY = 10
 bZ = 10
+
+; degradation rate
 aX = .1
 aY = .1
 aZ = .1
 
-kX = 10
-kY = 100
+; expression thresholds (?)
+kX = 50
+kY = 10
 
-
+; fraction bound
 FbX = (RX/kX) / (1 + (RX/kX)) 
 
 FbY = (RY/kY) / (1 + (RY/kY))
 
-RX' = bX - (RX * aX)
-
+RX' = RX - (RX * aX)
+ 
+; rate of mRNA(Y) tied to bound X
 RY' = FbX * bY - (RY * aY)
  
+; rate of mRNA(Z) tied to bound X & Y
 RZ' = FbX * FbY * bZ - (RZ * aZ)
 </jeditorpane>
 </jmadonna.EquationPanel>

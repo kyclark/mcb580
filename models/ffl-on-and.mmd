@@ -1,13 +1,10 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 307 0 930 540 </Bounds>
+<Bounds> 90 66 952 673 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
-
-
-
 
 </jeditorpane>
 </NotesEditor>
@@ -15,69 +12,49 @@
 <DocPanel>
 </DocPanel>
 <jeditorpane>
-<size>14</size><family>Serif</family>METHOD RK4
+<size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=3
+STOPTIME=50
 DT = 0.02
 
-k1 = 10
-k2 = .01
-k3 = 10
-k4 = .01
-init TF2 = 0
-init R = 0
-Kd = 0.001
+; initial values
+init RX = 0
+init RY = 0
+init RZ = 0
 
-d/dt (R) = FuTF2 * k1 - (k2 * R)
+; production rate
+bX = 10
+bY = 10
+bZ = 10
 
-d/dt (TF2) = k3 * (R) - k4 * (TF2)
+; degradation rate
+aX = .1
+aY = .1
+aZ = .1
 
-FuTF2 = (1/(1 + (TF2)/Kd))
+; expression thresholds 
+kX = 50
+kY = 50
 
+; fraction bound
+FbX = (RX/kX) / (1 + (RX/kX)) 
 
-<size>16</size>
+FbY = (RY/kY) / (1 + (RY/kY))
 
+; rate of mRNA(X) is simplest
+RX' = bX - (RX * aX)
 
+; rate of mRNA(Y) tied to bound X
+RY' = FbX * bY - (RY * aY)
+ 
+; rate of mRNA(Z) tied to bound X & Y
+RZ' = FbX * FbY * bZ - (RZ * aZ)
 
 </jeditorpane>
 </jmadonna.EquationPanel>
 
 <imethod> rk4 </imethod>
-<Param> k1 0.8 </Param>
-<Param> k2 4.0 </Param>
-<Sliders>
-<SliderInfo>
-<name> k1 </name>
-<default> 0.8 </default>
-<min> 0.0 </min>
-<max> 4.0 </max>
-<inc> 0.1 </inc>
-<log> false </log>
-<neg> false </neg>
-
-</SliderInfo>
-<SliderInfo>
-<name> R </name>
-<default> 0.0 </default>
-<min> -1.0 </min>
-<max> 1.0 </max>
-<inc> 0.1 </inc>
-<log> false </log>
-<neg> false </neg>
-
-</SliderInfo>
-<SliderInfo>
-<name> k2 </name>
-<default> 4.0 </default>
-<min> 0.0 </min>
-<max> 4.0 </max>
-<inc> 0.1 </inc>
-<log> false </log>
-<neg> false </neg>
-
-</SliderInfo>
-</Sliders>
 <jmadonna.ParameterPanel>
 <DocPanel>
 </DocPanel>
@@ -98,7 +75,6 @@ FuTF2 = (1/(1 + (TF2)/Kd))
 Graph 1
 </Name>
 </DocPanel>
-<slidersVisible> true </slidersVisible>
 
 <SingleView>
 <graph.COutputView>
@@ -114,12 +90,17 @@ Graph 1
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
-<VI_SYMBOL> R </VI_SYMBOL>
+<VI_SYMBOL> RX </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
 <OV_YVAR_I>
-<VI_SYMBOL> TF2 </VI_SYMBOL>
+<VI_SYMBOL> RY </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> true </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> RZ </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
@@ -153,9 +134,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>          TIME     </OV_X1LABELS>
-<OV_Y1LABELS>          R     </OV_Y1LABELS>
-<OV_Y2LABELS>               </OV_Y2LABELS>
+<OV_X1LABELS>    TIME  </OV_X1LABELS>
+<OV_Y1LABELS>    RX, RZ  </OV_Y1LABELS>
+<OV_Y2LABELS>    RY  </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
