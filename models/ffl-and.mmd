@@ -1,10 +1,11 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 402 0 878 546 </Bounds>
+<Bounds> 0 8 1267 674 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
 
 </jeditorpane>
 </NotesEditor>
@@ -23,6 +24,9 @@ init RX = 0
 init RY = 0
 init RZ = 0
 
+; Hill coefficient
+H=2
+
 ; production rate
 bX = 10
 bY = 10
@@ -34,13 +38,12 @@ aY = .1
 aZ = .1
 
 ; expression thresholds 
-kX = 1
-kY = 1
+kX = 75
+kY =75
 
 ; fraction bound
-FbX = (RX/kX) / (1 + (RX/kX)) 
-
-FbY = (RY/kY) / (1 + (RY/kY))
+FbX = (RX^H/kX^H) / (1 + (RX^H/kX^H)) 
+FbY = (RY^H/kY^H) / (1 + (RY^H/kY^H))
 
 RX' = IF TIME <lt> 30 THEN (bX - RX * aX) ELSE (0 - RX * aX)
 
@@ -49,6 +52,8 @@ RY' = FbX * bY - (RY * aY)
  
 ; rate of mRNA(Z) tied to bound X & Y
 RZ' = FbX * FbY * bZ - (RZ * aZ)
+
+
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -130,12 +135,12 @@ Graph 1
 </OV_ZSFFT>
 <OV_ZSOSCMODE>
 </OV_ZSOSCMODE>
-<OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>    TIME  </OV_X1LABELS>
-<OV_Y1LABELS>    RX, RZ  </OV_Y1LABELS>
-<OV_Y2LABELS>    RY  </OV_Y2LABELS>
+<OV_AUTOLABEL> 0 1 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
+<OV_X1LABELS>  TIME </OV_X1LABELS>
+<OV_Y1LABELS>  RX, RZ </OV_Y1LABELS>
+<OV_Y2LABELS>  RY </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
