@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 348 89 932 565 </Bounds>
+<Bounds> 189 0 1034 628 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -20,35 +20,35 @@ DT = 0.02
 
 ; initial values
 init RX = 10
-init RY = 10
-init RZ = 10
+init RY = 0
+init RZ = 0
 
 ; production rate
-bX = 10
+bX = 0
 bY = 10
 bZ = 10
 
 ; degradation rate
-aX = 1.1
-aY = 1.1
-aZ = 1.1
+aX = .1
+aY = .1
+aZ = .1
 
 ; expression thresholds 
 kX = 50
-kY = 50
+kY = 10
 
 ; fraction bound
 FbX = (RX/kX) / (1 + (RX/kX)) 
 
 FbY = (RY/kY) / (1 + (RY/kY))
 
-RX' = RX - (RX * aX)
+RX' = bX - (RX * aX)
  
 ; rate of mRNA(Y) tied to bound X
 RY' = FbX * bY - (RY * aY)
  
 ; rate of mRNA(Z) tied to bound X & Y
-RZ' = FbX * FbY * bZ - (RZ * aZ)
+RZ' = (FbX + FbY)/2 * bZ - (RZ * aZ)
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -119,6 +119,13 @@ Graph 1
 <OV_INITCOND> false </OV_INITCOND>
 <OV_RDOUTFXFY> 0.0 0.0 </OV_RDOUTFXFY>
 <OV_ZSNORMAL>
+<ZS_SIZE> 1 </ZS_SIZE>
+<ZS_I>
+<ZS_XMINMAXDIV> 0.0 50.0 10  </ZS_XMINMAXDIV>
+<ZS_XLOG> false </ZS_XLOG>
+<ZS_Y1LOG> false </ZS_Y1LOG>
+<ZS_Y2LOG> false </ZS_Y2LOG>
+</ZS_I>
 </OV_ZSNORMAL>
 <OV_ZSFFT>
 <ZS_SIZE> 1 </ZS_SIZE>
