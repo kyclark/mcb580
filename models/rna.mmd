@@ -1,10 +1,11 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 0 0 600 400 </Bounds>
+<Bounds> 171 81 1101 552 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
 
 
 </jeditorpane>
@@ -16,35 +17,37 @@
 <size>14</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=10
+STOPTIME=3
 DT = 0.02
 
-d/dt (R) = FuTF2 * k1 - k2 * (R)
+k1 = 10
+k2 = .01
+k3 = 10
+k4 = .01
+init TF2 = 0
+init R = 0
+Kd = 0.001
+
+d/dt (R) = FuTF2 * k1 - (k2 * R)
 
 d/dt (TF2) = k3 * (R) - k4 * (TF2)
 
 FuTF2 = (1/(1 + (TF2)/Kd))
 
-k1 = 1
-k2 = .5
-k3 = 10
-k4 = .1
-init TF2 = 0
-init R = 0
-Kd = 0.001
-
 
 <size>16</size>
+
 
 </jeditorpane>
 </jmadonna.EquationPanel>
 
 <imethod> rk4 </imethod>
-<Param> k2 2.2 </Param>
+<Param> k1 0.8 </Param>
+<Param> k2 4.0 </Param>
 <Sliders>
 <SliderInfo>
 <name> k1 </name>
-<default> 1.0 </default>
+<default> 0.8 </default>
 <min> 0.0 </min>
 <max> 4.0 </max>
 <inc> 0.1 </inc>
@@ -64,7 +67,7 @@ Kd = 0.001
 </SliderInfo>
 <SliderInfo>
 <name> k2 </name>
-<default> 2.2 </default>
+<default> 4.0 </default>
 <min> 0.0 </min>
 <max> 4.0 </max>
 <inc> 0.1 </inc>
@@ -143,9 +146,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>      TIME   </OV_X1LABELS>
-<OV_Y1LABELS>      R   </OV_Y1LABELS>
-<OV_Y2LABELS>         </OV_Y2LABELS>
+<OV_X1LABELS>        TIME    </OV_X1LABELS>
+<OV_Y1LABELS>        R    </OV_Y1LABELS>
+<OV_Y2LABELS>            </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

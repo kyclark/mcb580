@@ -1,10 +1,11 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 145 43 1039 708 </Bounds>
+<Bounds> 0 0 1141 693 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
 </jeditorpane>
 </NotesEditor>
 <jmadonna.EquationPanel>
@@ -18,7 +19,7 @@ STOPTIME=100
 DT = 0.02
 
 ; initial mRNA values
-init RX = 5
+init RX = 0
 init RY = 0
 init RZ = 0
 
@@ -33,8 +34,8 @@ aY = .1
 aZ = .1
 
 ; Affinity (?)
-kX = 10
-kY = 10
+kX = 0.1
+kY = 0.001
 
 ; mRNA(X) = production - degradation
 RX' = bX - (RX * aX)
@@ -49,6 +50,7 @@ FbY = (RY/kY) / (1 + (RY/kY))
 FbX = (RX/kX) / (1 + (RX/kX))
 
 RZ' = FbX * FbY * (bZ - (RZ * aZ))
+
 </jeditorpane>
 </jmadonna.EquationPanel>
 
@@ -124,12 +126,12 @@ Graph 1
 </OV_ZSFFT>
 <OV_ZSOSCMODE>
 </OV_ZSOSCMODE>
-<OV_AUTOLABEL> 0 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
-<OV_X1LABELS>  TIME </OV_X1LABELS>
-<OV_Y1LABELS>  RY </OV_Y1LABELS>
-<OV_Y2LABELS>  RZ </OV_Y2LABELS>
+<OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
+<OV_X1LABELS>    TIME  </OV_X1LABELS>
+<OV_Y1LABELS>    RY  </OV_Y1LABELS>
+<OV_Y2LABELS>    RZ  </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
