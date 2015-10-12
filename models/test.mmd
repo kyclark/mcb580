@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 152 0 988 584 </Bounds>
+<Bounds> 69 0 1211 702 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -14,13 +14,36 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=60
+STOPTIME=10
+DT = 0.02
+METHOD RK4
+
+STARTTIME = 0
+STOPTIME=20
 DT = 0.02
 
-init RNA = 0
-bRNA = 10
-aRNA = .1 
-RNA' = bRNA - (RNA * aRNA)
+I = IF TIME <lt> 2 
+THEN 0 ELSE 
+IF TIME <lt> 10 
+THEN  0.5
+ELSE 0.6
+
+init A = 10
+init SA = 10
+
+; basal concentrations of enzymes that reverse A and B
+Fa = .01
+
+; threshold amount of A 
+Ka = 10
+
+; MM-constants
+KIA = .01
+VmaxS = 0.01
+
+SA' = (VmaxS * A)/(Ka + A)
+
+A' = I * KIA * ((1-A)/(1-A) + KIA) - Fa * SA * (A/(A+SA))
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -51,17 +74,21 @@ Graph 1
 <graph.COutputView>
 <Name> Graph </Name>
 <GraphToolBar>
-<Grid> 1 </Grid>
 </GraphToolBar>
 <Plot>
-<LineWidth> 3 </LineWidth>
+<LineWidth> 1 </LineWidth>
 </Plot>
 <OV_XVAR>
 <VI_SYMBOL> TIME </VI_SYMBOL>
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
-<VI_SYMBOL> RNA </VI_SYMBOL>
+<VI_SYMBOL> A </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> I </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
@@ -73,7 +100,7 @@ Graph 1
 <OV_OSCMODE> false </OV_OSCMODE>
 <OV_LINES> true </OV_LINES>
 <OV_POINTS> false </OV_POINTS>
-<OV_GRID> true </OV_GRID>
+<OV_GRID> false </OV_GRID>
 <OV_DBTN> true </OV_DBTN>
 <OV_LEGEND> false </OV_LEGEND>
 <OV_PARAMS> false </OV_PARAMS>
@@ -96,7 +123,7 @@ Graph 1
 <OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
 <OV_X1LABELS>  TIME </OV_X1LABELS>
-<OV_Y1LABELS>  RNA </OV_Y1LABELS>
+<OV_Y1LABELS>  A, I </OV_Y1LABELS>
 <OV_Y2LABELS>   </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>

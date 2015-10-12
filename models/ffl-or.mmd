@@ -1,10 +1,13 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 15 0 1265 628 </Bounds>
+<Bounds> 0 0 1280 751 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
+
+
 
 
 
@@ -17,7 +20,7 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=60
+STOPTIME=100
 DT = 0.02
 
 ; initial values
@@ -57,6 +60,9 @@ RZ' = (1 - (FuX * FuY)) * bZ - (RZ * aZ)
 
 
 
+
+
+
 </jeditorpane>
 </jmadonna.EquationPanel>
 
@@ -86,6 +92,7 @@ Graph 1
 <graph.COutputView>
 <Name> Graph </Name>
 <GraphToolBar>
+<Legend> 1 </Legend>
 <Grid> 1 </Grid>
 </GraphToolBar>
 <Plot>
@@ -120,7 +127,7 @@ Graph 1
 <OV_POINTS> false </OV_POINTS>
 <OV_GRID> true </OV_GRID>
 <OV_DBTN> true </OV_DBTN>
-<OV_LEGEND> false </OV_LEGEND>
+<OV_LEGEND> true </OV_LEGEND>
 <OV_PARAMS> false </OV_PARAMS>
 <OV_READOUT> false </OV_READOUT>
 <OV_INITCOND> false </OV_INITCOND>
@@ -140,9 +147,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>        TIME    </OV_X1LABELS>
-<OV_Y1LABELS>        RX, RZ    </OV_Y1LABELS>
-<OV_Y2LABELS>        RY    </OV_Y2LABELS>
+<OV_X1LABELS>              TIME       </OV_X1LABELS>
+<OV_Y1LABELS>              RX, RZ       </OV_Y1LABELS>
+<OV_Y2LABELS>              RY       </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

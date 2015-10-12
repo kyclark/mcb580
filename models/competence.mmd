@@ -1,7 +1,7 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 152 0 988 584 </Bounds>
+<Bounds> 0 0 1280 751 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
@@ -14,14 +14,23 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=60
+STOPTIME=10
 DT = 0.02
 
-init RNA = 0
-bRNA = 10
-aRNA = .1 
-RNA' = bRNA - (RNA * aRNA)
+init K = 1
+init S = 1
+aK = 5
+K0 = 10
+bs = 5
+bk = 5
+k1 = 5
+p = 5
+n=2
+Noise =10
 
+d/dt(K) = ak + ((bk * K^n)/(K0 ^ n + K^n)) - (K/(1 + K + S))
+
+d/dt(S) = (bs / 1 + (K/k1)^p) - (S/1 + K + S) + Noise
 </jeditorpane>
 </jmadonna.EquationPanel>
 
@@ -54,16 +63,21 @@ Graph 1
 <Grid> 1 </Grid>
 </GraphToolBar>
 <Plot>
-<LineWidth> 3 </LineWidth>
+<LineWidth> 1 </LineWidth>
 </Plot>
 <OV_XVAR>
 <VI_SYMBOL> TIME </VI_SYMBOL>
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
-<VI_SYMBOL> RNA </VI_SYMBOL>
+<VI_SYMBOL> K </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> S </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> true </VI_Y2AXIS>
 </OV_YVAR_I>
 </OV_YVARS>
 <OV_TABLE> false </OV_TABLE>
@@ -96,8 +110,8 @@ Graph 1
 <OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
 <OV_X1LABELS>  TIME </OV_X1LABELS>
-<OV_Y1LABELS>  RNA </OV_Y1LABELS>
-<OV_Y2LABELS>   </OV_Y2LABELS>
+<OV_Y1LABELS>  K </OV_Y1LABELS>
+<OV_Y2LABELS>  S </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

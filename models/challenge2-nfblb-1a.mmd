@@ -1,10 +1,13 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 152 0 988 584 </Bounds>
+<Bounds> 0 0 600 400 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
+
+
 </jeditorpane>
 </NotesEditor>
 <jmadonna.EquationPanel>
@@ -14,13 +17,44 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=60
+STOPTIME=20
 DT = 0.02
 
-init RNA = 0
-bRNA = 10
-aRNA = .1 
-RNA' = bRNA - (RNA * aRNA)
+I = IF TIME <lt> 2 THEN 0 ELSE IF TIME <lt> 10 THEN 2 ELSE 4
+init A = 10
+init B = 10
+init C = 10
+kia = 1
+Kia = .01
+kcb = 1
+Kab = .01
+kac = 1
+Kbc = .1
+Kpbc = 1
+Kfaa = .01
+kpfaa = 1
+kpfbb = 1
+Kpfaa = 1
+
+; upregulation of C by A
+Kac = 1
+
+; Michaelis-Menten constats for activation of B by C
+; and inhibition of B by the basal enzyme
+Kcb = .1
+Kpfbb = .01
+
+; basal concentrations of enzymes that reverse A and B
+Fa = 1
+Fb = 1
+
+A' = I * kia * ((1-A)/(1-A) + Kia) - Fa * kpfaa * (A/(A+Kpfaa))
+
+B' = C * kcb * ((1-B)/(1-B) + Kcb) -  Fb * kpfbb * (B/(B+Kpfbb))
+
+C' = A * kac * ((1-C)/(1-C) + Kac) - B * kpbc * (C/(C+Kpbc))
+
+
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -51,17 +85,31 @@ Graph 1
 <graph.COutputView>
 <Name> Graph </Name>
 <GraphToolBar>
-<Grid> 1 </Grid>
 </GraphToolBar>
 <Plot>
-<LineWidth> 3 </LineWidth>
+<LineWidth> 1 </LineWidth>
 </Plot>
 <OV_XVAR>
 <VI_SYMBOL> TIME </VI_SYMBOL>
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
-<VI_SYMBOL> RNA </VI_SYMBOL>
+<VI_SYMBOL> A </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> B </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> true </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> C </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> I </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
@@ -73,7 +121,7 @@ Graph 1
 <OV_OSCMODE> false </OV_OSCMODE>
 <OV_LINES> true </OV_LINES>
 <OV_POINTS> false </OV_POINTS>
-<OV_GRID> true </OV_GRID>
+<OV_GRID> false </OV_GRID>
 <OV_DBTN> true </OV_DBTN>
 <OV_LEGEND> false </OV_LEGEND>
 <OV_PARAMS> false </OV_PARAMS>
@@ -92,12 +140,12 @@ Graph 1
 </OV_ZSFFT>
 <OV_ZSOSCMODE>
 </OV_ZSOSCMODE>
-<OV_AUTOLABEL> 0 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
-<OV_X1LABELS>  TIME </OV_X1LABELS>
-<OV_Y1LABELS>  RNA </OV_Y1LABELS>
-<OV_Y2LABELS>   </OV_Y2LABELS>
+<OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
+<OV_X1LABELS>        TIME    </OV_X1LABELS>
+<OV_Y1LABELS>        A, C    </OV_Y1LABELS>
+<OV_Y2LABELS>        B    </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

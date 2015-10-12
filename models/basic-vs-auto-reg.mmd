@@ -1,10 +1,12 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 152 0 988 584 </Bounds>
+<Bounds> 0 0 1280 751 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
+
 </jeditorpane>
 </NotesEditor>
 <jmadonna.EquationPanel>
@@ -14,14 +16,36 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=60
+STOPTIME=40
 DT = 0.02
 
-init RNA = 0
-bRNA = 10
-aRNA = .1 
-RNA' = bRNA - (RNA * aRNA)
+init RNA1 = 0
+init RNA2 = 0
+init TF2 = 0
+bRNA = .01
+aRNA = 0.1
+k3 = 10
+k4 = 10
+Kd = 0.01
+H=2
 
+FuTF2 = 1/(1 + (TF2^H)/Kd^H)
+
+TF2' = k3 * RNA2 - k4 * TF2
+
+; RNA1' = bRNA - (RNA1 * aRNA)
+
+; RNA2' = (FuTF2 * bRNA) - (aRNA * RNA2)
+
+RNA1' = 
+IF TIME <gt> 20 
+THEN 0 - (RNA1 * aRNA)
+ELSE bRNA - (RNA1 * aRNA)
+
+RNA2' = 
+IF TIME <gt> 20
+THEN 0 - (aRNA * RNA2)
+ELSE (FuTF2 * bRNA) - (aRNA * RNA2)
 </jeditorpane>
 </jmadonna.EquationPanel>
 
@@ -51,17 +75,29 @@ Graph 1
 <graph.COutputView>
 <Name> Graph </Name>
 <GraphToolBar>
+<Legend> 1 </Legend>
 <Grid> 1 </Grid>
 </GraphToolBar>
 <Plot>
 <LineWidth> 3 </LineWidth>
+<MovableLegend>
+<Bounds> 567 108 75 48 </Bounds>
+<opaque> true </opaque>
+<Color> 255 255 255 </Color>
+<border> true </border>
+</MovableLegend>
 </Plot>
 <OV_XVAR>
 <VI_SYMBOL> TIME </VI_SYMBOL>
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
-<VI_SYMBOL> RNA </VI_SYMBOL>
+<VI_SYMBOL> RNA1 </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> RNA2 </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
@@ -75,7 +111,7 @@ Graph 1
 <OV_POINTS> false </OV_POINTS>
 <OV_GRID> true </OV_GRID>
 <OV_DBTN> true </OV_DBTN>
-<OV_LEGEND> false </OV_LEGEND>
+<OV_LEGEND> true </OV_LEGEND>
 <OV_PARAMS> false </OV_PARAMS>
 <OV_READOUT> false </OV_READOUT>
 <OV_INITCOND> false </OV_INITCOND>
@@ -92,12 +128,12 @@ Graph 1
 </OV_ZSFFT>
 <OV_ZSOSCMODE>
 </OV_ZSOSCMODE>
-<OV_AUTOLABEL> 0 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
-<OV_X1LABELS>  TIME </OV_X1LABELS>
-<OV_Y1LABELS>  RNA </OV_Y1LABELS>
-<OV_Y2LABELS>   </OV_Y2LABELS>
+<OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
+<OV_X1LABELS>      TIME   </OV_X1LABELS>
+<OV_Y1LABELS>      RNA1   </OV_Y1LABELS>
+<OV_Y2LABELS>         </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

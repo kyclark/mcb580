@@ -1,10 +1,14 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 152 0 988 584 </Bounds>
+<Bounds> 121 205 600 400 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
+
+
+
 </jeditorpane>
 </NotesEditor>
 <jmadonna.EquationPanel>
@@ -14,13 +18,33 @@
 <size>16</size><family>Serif</family>METHOD RK4
 
 STARTTIME = 0
-STOPTIME=60
+STOPTIME=4
 DT = 0.02
 
 init RNA = 0
+init TF2 = 0
 bRNA = 10
-aRNA = .1 
-RNA' = bRNA - (RNA * aRNA)
+aRNA = .01
+bTF2 = 10
+aTF2 = .01
+Kd = .01
+H=2
+
+FuTF2 = 1/(1 + (TF2^H)/Kd^H)
+
+TF2' = bTF2 * RNA - aTF2 * TF2
+
+RNA' = 
+IF TIME <lt> .5 
+THEN 0 
+ELSE IF TIME <lt> 2 
+THEN FuTF2 * bRNA - aRNA * RNA 
+ELSE 0 - bRNA * aRNA
+
+
+
+
+
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -61,9 +85,14 @@ Graph 1
 </OV_XVAR>
 <OV_YVARS>
 <OV_YVAR_I>
+<VI_SYMBOL> TF2 </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
 <VI_SYMBOL> RNA </VI_SYMBOL>
 <VI_SHOW> true </VI_SHOW>
-<VI_Y2AXIS> false </VI_Y2AXIS>
+<VI_Y2AXIS> true </VI_Y2AXIS>
 </OV_YVAR_I>
 </OV_YVARS>
 <OV_TABLE> false </OV_TABLE>
@@ -92,12 +121,12 @@ Graph 1
 </OV_ZSFFT>
 <OV_ZSOSCMODE>
 </OV_ZSOSCMODE>
-<OV_AUTOLABEL> 0 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
-<OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
-<OV_X1LABELS>  TIME </OV_X1LABELS>
-<OV_Y1LABELS>  RNA </OV_Y1LABELS>
-<OV_Y2LABELS>   </OV_Y2LABELS>
+<OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
+<OV_X1LABELS>        TIME    </OV_X1LABELS>
+<OV_Y1LABELS>            </OV_Y1LABELS>
+<OV_Y2LABELS>        RNA    </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

@@ -1,10 +1,11 @@
 <Document>
 <Version> 22 </Version>
 <JMadonnaVersion> 9.0.123 </JMadonnaVersion>
-<Bounds> 318 0 926 649 </Bounds>
+<Bounds> 0 0 1280 751 </Bounds>
 <NotesEditor>
 <jeditorpane>
 <size>13</size><family>Lucida Grande</family>
+
 
 </jeditorpane>
 </NotesEditor>
@@ -18,20 +19,38 @@ STARTTIME = 0
 STOPTIME=2
 DT = 0.02
 
-d/dt (R) = FuTF2 * k1 - k2 * R
+d/dt (RNA) = FuTF2 * k1 - k2 * RNA
 
 FuTF2 = 1/(1 + (TF2)/Kd)
 
-d/dt (TF2) = k3 * R - k4 * TF2
+d/dt (TF2) = k3 * RNA - k4 * TF2
 
 k1 = 10
 k2 = 10
 k3 = 10
 k4 = 10
 init TF2 = 0
-init R = 0
+init RNA = 0
 Kd = 0.01
 
+{
+
+init TF = 0
+init RNA = 0
+bRNA = 10
+bTF = 10
+aRNA = 10
+aTF = 10
+H=2
+Kd = 0.01
+
+FuTF = 1/(1 + (TF^H/Kd^H))
+
+TF' = bTF * RNA - TF * aTF
+
+RNA' = FuTF * bRNA - RNA * aRNA
+
+}
 </jeditorpane>
 </jmadonna.EquationPanel>
 
@@ -110,9 +129,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>    TIME  </OV_X1LABELS>
-<OV_Y1LABELS>    R  </OV_Y1LABELS>
-<OV_Y2LABELS>      </OV_Y2LABELS>
+<OV_X1LABELS>      TIME   </OV_X1LABELS>
+<OV_Y1LABELS>      R   </OV_Y1LABELS>
+<OV_Y2LABELS>         </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
