@@ -7,9 +7,6 @@
 <size>13</size><family>Lucida Grande</family>
 
 
-
-
-
 </jeditorpane>
 </NotesEditor>
 <jmadonna.EquationPanel>
@@ -17,16 +14,16 @@
 </DocPanel>
 <jeditorpane>
 <size>16</size><family>Serif</family>METHOD RK4
+
 STARTTIME = 0
-STOPTIME=1000
+STOPTIME=600
 DT = 0.02
 
-init A = 20
-init B = 20
-init C = 20
+init A = 0
+init B = 0
+init C = 0
 
-I = IF TIME <lt> 100 THEN 0 ELSE IF TIME <lt> 200 THEN 2 ELSE 3  
-
+I = IF TIME <lt> 100 THEN 0 ELSE IF TIME <lt> 1000 THEN 5 ELSE 15 
 ; Michaelis-Menten constants
 kia = .01
 kfaa = .01
@@ -36,18 +33,16 @@ kfbb = .01
 kac = .01
 
 ; Km = amounts to half of Vmax
-kmia = 10
+kmia = 100
 kmfaa = 10
 kmcb = 10
 kmbc = 10
 kmac = 10
 kmfbb = 10
-kmfac = 10
 
-; basal concentrations of enzymes
-; that reverse A and B
-Fa = 100
-Fb = 100
+; basal concentrations of enzymes that reverse A and B
+Fa = 200
+Fb = 1
 
 d/dt(A) = I * kia * ((1-A)/(1-A) + kmia) - Fa * kfaa * (A/(A+kmfaa))
 
@@ -85,6 +80,7 @@ Graph 1
 <graph.COutputView>
 <Name> Graph </Name>
 <GraphToolBar>
+<Grid> 1 </Grid>
 </GraphToolBar>
 <Plot>
 <LineWidth> 1 </LineWidth>
@@ -108,11 +104,6 @@ Graph 1
 <VI_SHOW> true </VI_SHOW>
 <VI_Y2AXIS> false </VI_Y2AXIS>
 </OV_YVAR_I>
-<OV_YVAR_I>
-<VI_SYMBOL> I </VI_SYMBOL>
-<VI_SHOW> true </VI_SHOW>
-<VI_Y2AXIS> false </VI_Y2AXIS>
-</OV_YVAR_I>
 </OV_YVARS>
 <OV_TABLE> false </OV_TABLE>
 <OV_FFT> false </OV_FFT>
@@ -121,7 +112,7 @@ Graph 1
 <OV_OSCMODE> false </OV_OSCMODE>
 <OV_LINES> true </OV_LINES>
 <OV_POINTS> false </OV_POINTS>
-<OV_GRID> false </OV_GRID>
+<OV_GRID> true </OV_GRID>
 <OV_DBTN> true </OV_DBTN>
 <OV_LEGEND> false </OV_LEGEND>
 <OV_PARAMS> false </OV_PARAMS>
@@ -143,9 +134,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>            TIME      </OV_X1LABELS>
-<OV_Y1LABELS>            A, C      </OV_Y1LABELS>
-<OV_Y2LABELS>            B      </OV_Y2LABELS>
+<OV_X1LABELS>      TIME   </OV_X1LABELS>
+<OV_Y1LABELS>      C   </OV_Y1LABELS>
+<OV_Y2LABELS>         </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>

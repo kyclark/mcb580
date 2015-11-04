@@ -7,25 +7,21 @@
 <size>13</size><family>Lucida Grande</family>
 
 
-
-
-
 </jeditorpane>
 </NotesEditor>
 <jmadonna.EquationPanel>
 <DocPanel>
 </DocPanel>
 <jeditorpane>
-<size>16</size><family>Serif</family>METHOD RK4
-STARTTIME = 0
-STOPTIME=1000
+<size>16</size><family>Serif</family>STARTTIME = 0
+STOPTIME=2000
 DT = 0.02
 
-init A = 20
-init B = 20
-init C = 20
+init A = 0
+init B = 0
+init C = 0
 
-I = IF TIME <lt> 100 THEN 0 ELSE IF TIME <lt> 200 THEN 2 ELSE 3  
+I = IF TIME <lt> 100 THEN 0 ELSE IF TIME <lt> 300 THEN 5 ELSE IF TIME <lt> 700 THEN 10 ELSE 20
 
 ; Michaelis-Menten constants
 kia = .01
@@ -44,8 +40,7 @@ kmac = 10
 kmfbb = 10
 kmfac = 10
 
-; basal concentrations of enzymes
-; that reverse A and B
+; basal concentrations of enzymes that reverse A and B
 Fa = 100
 Fb = 100
 
@@ -54,7 +49,6 @@ d/dt(A) = I * kia * ((1-A)/(1-A) + kmia) - Fa * kfaa * (A/(A+kmfaa))
 d/dt(B) = C * kcb * ((1-B)/(1-B) + kmcb) -  Fb * kfbb * (B/(B+ kmfbb))
 
 d/dt(C) = A * kac * ((1-C)/(1-C) + kmac) - B * kbc * (C/(C+kmbc))
-
 
 </jeditorpane>
 </jmadonna.EquationPanel>
@@ -100,7 +94,7 @@ Graph 1
 </OV_YVAR_I>
 <OV_YVAR_I>
 <VI_SYMBOL> B </VI_SYMBOL>
-<VI_SHOW> true </VI_SHOW>
+<VI_SHOW> false </VI_SHOW>
 <VI_Y2AXIS> true </VI_Y2AXIS>
 </OV_YVAR_I>
 <OV_YVAR_I>
@@ -143,9 +137,9 @@ Graph 1
 <OV_AUTOLABEL> 0 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 1 0 </OV_AUTOLABEL>
 <OV_AUTOLABEL> 2 0 </OV_AUTOLABEL>
-<OV_X1LABELS>            TIME      </OV_X1LABELS>
-<OV_Y1LABELS>            A, C      </OV_Y1LABELS>
-<OV_Y2LABELS>            B      </OV_Y2LABELS>
+<OV_X1LABELS>      TIME   </OV_X1LABELS>
+<OV_Y1LABELS>      A, C, I   </OV_Y1LABELS>
+<OV_Y2LABELS>      B   </OV_Y2LABELS>
 <OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
 <OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
 </graph.COutputView>
